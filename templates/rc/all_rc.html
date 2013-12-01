@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block body %}
+<div class="container" style="padding-top:3cm;">
+  <div class="well">
+    <table border=1>
+      <tr>
+	<td>ID</td>
+	<td>Remote center name</td>
+	<td>City</td>
+	<td>State</td>
+	<!-- <td>Coordinator</td> -->
+      </tr>
+      {% for rc in remotecenters %}
+      <tr>
+      <td>{{rc.rc_id}}</td>
+      <td><a href={{rc.id}}>{{rc.name}}</a></td>
+      <td>{{rc.city}}</td>
+      <td>{{rc.state}}</td>
+      <!-- <td>{{rc.coordinator.id}}</td> -->
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+</div>
+{% endblock body %}
