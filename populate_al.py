@@ -2,7 +2,7 @@ import os
 import sys
 import store
 import coordinators_list
-import rc_list
+import ac_list
 
 
 def populate_users():
@@ -30,16 +30,16 @@ def populate_users():
         for i in user_list:
             print i.username
 
-def populate_rc():
+def populate_ac():
 
-    for rc in rc_list.rcs:
-        print "Adding RC: %s has coordinator: %s" % (rc['NAME'], rc['COORDINATOR'])
-        add_rc(
-            rc_id=rc['RC_ID'],
-            name=rc['NAME'],
-            coordinator=User.objects.get(username=rc['COORDINATOR']),
-            city=rc['CITY'],
-            state=rc['STATE'],
+    for ac in ac_list.acs:
+        print "Adding AC: %s has coordinator: %s" % (ac['NAME'], ac['COORDINATOR'])
+        add_ac(
+            ac_id=ac['RC_ID'],
+            name=ac['NAME'],
+            coordinator=User.objects.get(username=ac['COORDINATOR']),
+            city=ac['CITY'],
+            state=ac['STATE'],
             status=True)
 
 
@@ -54,21 +54,21 @@ def add_coordinator(user, contact, picture):
     up = Coordinator(user=user, contact=contact, picture=picture)
     up.save()
 
-def add_rc(rc_id, name, city, state, coordinator, status):
-    rc = RemoteCenter(rc_id=rc_id, name=name, city=city,
+def add_ac(ac_id, name, city, state, coordinator, status):
+    ac = AakashCenter(ac_id=ac_id, name=name, city=city,
                       state=state, coordinator=coordinator,
                       status=status)
-    rc.save()
+    ac.save()
     
 # start execution here!
 if __name__ == '__main__':
     print "Starting Aakashlabs population script..."
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'aakashlabs.settings')
-    from rc.models import RemoteCenter, Coordinator
+    from ac.models import AakashCenter, Coordinator
     from django.contrib.auth.models import User
 
-    if os.path.exists('rc.db'):
-        os.system("rm rc.db")
+    if os.path.exists('ac.db'):
+        os.system("rm ac.db")
 
     populate_users()
-    populate_rc()
+    populate_ac()

@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body_block %}
+<div class="container" style="padding-top:3cm;" align="center">
+  <div class="well">
+    <div class="col-lg-12">
+
+    </div>
+    <br>
+    <table border=1 cellpadding="10">
+    <tr>
+    <td align="center"><strong class="text-muted">ID</strong>
+      <form>
+      	<input type="text" class="form-control" placeholder="Search by ID..."
+      	       value="" name="suggest_ac_id" id="suggest_ac_id">
+      </form>
+    </td>
+    <td align="center"><strong class="text-muted">Center name</strong>
+      <form>
+      	  <input type="text" class="form-control" placeholder="Search by name..."
+      	     value="" name="suggest_ac_name" id="suggest_ac_name">
+      </form>
+    </td>
+    <td align="center"><strong class="text-muted">City</strong>
+      <form>
+      	  <input type="text" class="form-control" placeholder="Search by city..."
+      	     value="" name="suggest_ac_city" id="suggest_ac_city">
+      </form>
+    </td>
+    <td align="center"><strong class="text-muted">State</strong>
+      <form>
+      	  <input type="text" class="form-control" placeholder="Search by state..."
+      	     value="" name="suggest_ac_state" id="suggest_ac_state">
+      </form>
+    </td>
+    <!-- <td>Coordinator</td> -->
+    </tr>
+    </table>
+    <br>
+    <div id="cats">
+      {% include 'ac/ac_list.html' with aakashcenters=aakashcenters %}
+    </div> <!-- cats -->
+  </div>
+</div>
+
+<script src="{% static 'js/jquery-2.0.3.min.js' %}"></script>
+<script src="{% static 'js/suggest.js' %}"></script>
+{% endblock body_block %}

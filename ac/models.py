@@ -15,10 +15,10 @@ class Coordinator(models.Model):
         return self.user.username
 
         
-class RemoteCenter(models.Model):
-    """Remote centers.
+class AakashCenter(models.Model):
+    """Aakash centers.
     """
-    rc_id = models.IntegerField(max_length=4, unique=True)
+    ac_id = models.IntegerField(max_length=4, unique=True)
     name = models.CharField(max_length=200, blank=True)
     city = models.CharField(max_length=200, blank=True)
     state = models.CharField(max_length=200, blank=True)

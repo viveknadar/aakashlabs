@@ -1,15 +1,14 @@
 {% extends 'base.html' %}
 {% load static %}
 
-
-{% block body %}
+{% block body_block %}
 <div class="container" style="padding-top:3cm;">
   <div class="well">
     <div class="row">
       <div class="container" align="center">
-	<h2>{{remotecenter.name}}</h2>
-	<p class="text-muted">RC_ID: <strong>{{remotecenter.rc_id}}</strong></p>
-	<p class="text-muted"><strong>{{remotecenter.city}}, {{remotecenter.state}}</strong></p>
+	<h2>{{aakashcenter.name}}</h2>
+	<p class="text-muted">RC_ID: <strong>{{aakashcenter.ac_id}}</strong></p>
+	<p class="text-muted"><strong>{{aakashcenter.city}}, {{aakashcenter.state}}</strong></p>
       </div>
       {% for c in coordinator %}
       <div class="col-md-8">
@@ -27,7 +26,6 @@
 	  <tr>
 	  <td>E-mail:</td>
 	  <td>{{c.user.email}}</td>
-	  </tr>
 	  </table>
 	</div>
       </div>
@@ -44,4 +42,4 @@
 
   </div>
 </div>
-{% endblock body %}
+{% endblock body_block %}

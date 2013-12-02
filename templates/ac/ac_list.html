@@ -1,0 +1,23 @@
+{% if aakashcenters %}
+<table border=1 cellpadding="10">
+  <tr>
+    <td align="center"><strong>ID</strong></td>
+    <td align="center"><strong>Center name</strong></td>
+    <td align="center"><strong>City</strong></td>
+    <td align="center><strong>State</strong></td>
+    <!-- <td>Coordinator</td> -->
+  </tr>
+  <p class="text-info">Found {{aakashcenters|length}} result{{aakashcenters|length|pluralize}}.</p>
+  {% for ac in aakashcenters %}
+  <tr>
+    <td><strong>{{ac.ac_id}}</strong></td>
+    <td><a href="/ac/{{ac.id}}">{{ac.name}}</a></td>
+    <td>{{ac.city}}</td>
+    <td>{{ac.state}}</td>
+    <!-- <td>{{ac.coordinator.id}}</td> -->
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<p class="text-muted">Sorry, nothing found.</p>
+{% endif %}
