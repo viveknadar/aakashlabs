@@ -1,6 +1,12 @@
 # ignored files for aakashlabs
 
 *.db
+
+*.tex
+*.sty
+
+
 store.py
-media/*
 cl.py
+
+media/*

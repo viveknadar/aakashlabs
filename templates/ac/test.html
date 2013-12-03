@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block body_block %}
+<div class="container" style="padding-top:3cm;" align="center">
+
+{% for i in projects %}
+<li><a href="/ac/project/{{i.id}}">{{i.name}}</a></li>
+{% endfor %}
+</div>
+
+
+{% endblock body_block %}

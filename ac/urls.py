@@ -10,5 +10,8 @@ urlpatterns = patterns(
     url(r'^suggest_name/$', views.suggest_ac_name, name='suggest_ac_name'),
     url(r'^suggest_city/$', views.suggest_ac_city, name='suggest_ac_city'),
     url(r'^suggest_state/$', views.suggest_ac_state, name='suggest_ac_state'),
+
+    url(r'^test/$', views.test, name='test'),
+    url(r'^project/(?P<id>\d+)/$', views.project, name='project'),
 )
 

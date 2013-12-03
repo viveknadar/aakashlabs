@@ -3,6 +3,7 @@ from django.template import RequestContext
 from django.shortcuts import render_to_response, get_object_or_404
 
 from ac.models import AakashCenter, Coordinator
+from ac.models import Project, Mentor, TeamMember
 
 def index(request):
     """Index page.
@@ -157,3 +158,20 @@ def ac(request, id):
     context_dict = {'aakashcenter': aakashcenter,
                     'coordinator': coordinator}
     return render_to_response('ac/ac.html', context_dict, context)
+
+
+def test(request):
+    context = RequestContext(request)
+    projects = Project.objects.all()
+    
+    context_dict = {'projects': projects}
+    
+
+    return render_to_response('ac/test.html', context_dict, context)
+
+def project(request, id):
+    context = RequestContext(request)
+    print id
+    projects = Project.objects.get(pk=id)
+    context_dict = {'projects': projects}
+    return render_to_response('ac/project.html', context_dict, context)

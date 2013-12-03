@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block body_block %}
+<div class="container" style="padding-top:3cm;" align="center">
+
+  Project name: {{projects.name}}<br>
+  AC: {{projects.ac}}<br>
+  Summary: {{projects.summary}}<br>
+  Team Members: {% for member in projects.member.all %}
+  <li>{{member}}</li>
+  {% endfor %}
+{% endblock body_block %}

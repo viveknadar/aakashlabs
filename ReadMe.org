@@ -1,0 +1,72 @@
+* [[http://aakashlabs.org/][aakashlabs]]
+  
+  #+CAPTION: AakashLabs
+  #+NAME: AakashLabs
+  [[./static/images/aakash-logo.png]]
+  An official site for Aakash tablet.
+  (Now in [[https://www.djangoproject.com/][Python-django]])
+
+** Clone
+
+     - Clone this repository
+       #+BEGIN_SRC sh
+         git clone https://github.com/psachin/aakashlabs.git
+       #+END_SRC sh
+
+** Usage
+   
+   - Install dependency using =virtualenv=. To know more about
+     virtualenv visit [[http://www.virtualenv.org/en/latest/][this]] link.
+     #+BEGIN_SRC sh
+       pip install -r requirements.txt
+     #+END_SRC sh
+
+*** Populate database
+
+     - =populate_al.py= will create an Admin user and populates the
+       database.
+
+     - And run the script
+       #+BEGIN_SRC sh 
+         python populate_al.py
+       #+END_SRC sh
+
+       It will prompt for admin password.
+
+     - Finally run development server
+       #+BEGIN_SRC sh
+         python manage.py runserver
+       #+END_SRC sh
+
+*** Other files
+
+    - =rc_parser.py=: Parses =rc.csv= and create two files,
+      =ac_list.py= and =coordinators_list.py=.
+
+    - =ac_list.py=: Python dictionary contains Aakash centers list.
+
+    - =coordinators_list.py=: Python dictionary contains Aakash center
+      coordinators information.
+
+** How to Contribute?
+
+   - Please create a separate branch(with appropriate name) and send
+     pull request. 
+
+   - Your branch name should be specific to your changes/features. Say
+     for example if you added a new view & a template to show
+     /project/ details, name it as *new_project_template*. 
+
+   - Your code and changes should be properly commented.
+
+   - Don't change models. If you feel that it is a necessity, please
+     raise an issue first. Let others know why you feel it is
+     important(Others work may be based of present model and your
+     change will /screw/ their work.)
+
+   - I like small & specific changes. So don't send variety of changes
+     in one go.
+
+** License
+   - See [[https://github.com/psachin/aakashlabs/blob/master/COPYING][COPYING]]
+
