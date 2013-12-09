@@ -12,20 +12,16 @@ def index(request):
     Arguments:
     - `Request`:
     """
-    context = RequestContext(request)
-    context_dict = {}
-    return render_to_response('index.html', context_dict, context)
+    return render_to_response('index.html')
 
 
 def about(request):
-    """Index page.
+    """About page.
 
     Arguments:
     - `Request`:
     """
-    context = RequestContext(request)
-    context_dict = {}
-    return render_to_response('about.html', context_dict, context)    
+    return render_to_response('about.html')    
 
 
 def all_ac(request):
@@ -192,6 +188,20 @@ def projects(request):
     
     context_dict = {'projects': projects}
     return render_to_response('ac/projects.html', context_dict, context)
+
+def iitb(request):
+    """List all projects at iitb"""
+    context = RequestContext(request)
+    iitb = AakashCenter.objects.get(ac_id=0)
+    coordinator = iitb.coordinator
+    coordinator = Coordinator.objects.filter(id=coordinator.id)
+
+    projects = Project.objects.filter(ac=iitb.id)
+    
+    context_dict = {'iitb': iitb,
+                    'coordinator': coordinator,
+                    'projects': projects}
+    return render_to_response('ac/iitb.html', context_dict, context)
 
 def project(request, id):
     context = RequestContext(request)

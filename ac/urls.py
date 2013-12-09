@@ -4,6 +4,7 @@ from ac import views
 urlpatterns = patterns(
     '',
     url(r'^$', views.all_ac, name='all_ac'),
+    url(r'^iitb/$', views.iitb, name='iitb'),
     url(r'^(?P<id>\d+)/$', views.ac, name='ac'),
 
     url(r'^suggest_id/$', views.suggest_ac_id, name='suggest_ac_id'),

@@ -1,12 +1,68 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block body_block %}
 <div class="container" style="padding-top:3cm;" align="center">
+  <div class="well">
+    <div class="col-lg-12">
+    </div>
+    <br>
+    <table border=1 cellpadding="10">
+    <tr>
+    <td align="center"><strong class="text-muted">Project</strong>
+      <form>
+      	<input type="text" class="form-control" placeholder="Search by Project name..."
+      	       value="" name="suggest_ac_id" id="suggest_ac_id">
+      </form>
+    </td>
+    <td align="center"><strong class="text-muted">Center name</strong>
+      <form>
+      	  <input type="text" class="form-control" placeholder="Search by center name..."
+      	     value="" name="suggest_ac_name" id="suggest_ac_name">
+      </form>
+    </td>
+    <!-- <td>Coordinator</td> -->
+    </tr>
+    </table>
+    <br>
+    {% if projects %}
+    <table border=1 padding=10>
+      <tr>
+	<td>Project name</td>
+	<td>Download count</td>
+	<td>Documentation</td>
+	<td>Source</td>
+      </tr>
+      {% for i in projects %}
+      <tr>
+	<td>
+	  <a href="/ac/project/{{i.id}}"><strong>{{i.name}}</strong></a>
+	  <p class="text-muted"><a class="text-muted" href="/ac/{{i.ac.id}}">{{i.ac.name}}</a></p>
+	</td>
+	<td>{{i.download_count}}</td>
+	<td><a href={{i.doc_url}}>Docs</a></td>
+	<td><a href={{i.src_url}}>Source</a></td>
+      </tr>
+      {% endfor %}
 
-{% for i in projects %}
-<li><a href="/ac/project/{{i.id}}">{{i.name}}</a></li>
-{% endfor %}
+    </table>
+    {% else %}
+    No projects.
+    {% endif %}
+  </div>
+    <!-- <div id="cats"> -->
+    <!--   {% include 'ac/ac_list.html' with aakashcenters=aakashcenters %} -->
+    <!-- </div> <\!-- cats -\-> -->
+  </div>
 </div>
 
-
+<script src="{% static 'js/jquery-2.0.3.min.js' %}"></script>
+<script src="{% static 'js/suggest.js' %}"></script>
 {% endblock body_block %}
+
+
+
+
+
+
+
