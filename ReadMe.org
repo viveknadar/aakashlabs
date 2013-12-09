@@ -26,10 +26,16 @@
      - =populate_al.py= will create an Admin user and populates the
        database.
 
-     - And run the script
+     - And run the script(Not working temporarily)
        #+BEGIN_SRC sh 
          python populate_al.py
        #+END_SRC sh
+
+       Instead run
+       #+BEGIN_SRC sh
+         python manage.py syncdb
+       #+END_SRC sh
+       and insert data using the 'admin' interface.
 
        It will prompt for admin password.
 

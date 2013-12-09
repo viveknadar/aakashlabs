@@ -1,6 +1,7 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
 from django.shortcuts import render_to_response, get_object_or_404
+from django.contrib.auth.models import User
 
 from ac.models import AakashCenter, Coordinator
 from ac.models import Project, Mentor, TeamMember
@@ -145,33 +146,76 @@ def suggest_ac_state(request):
     return render_to_response('ac/ac_list.html',
                               context_dict, context)
 
+
 def ac(request, id):
     context = RequestContext(request)
+
+    # download APK 
+    if request.POST and request.POST['download']:
+        project = get_object_or_404(Project, id=request.POST['download'])
+        response = HttpResponse(mimetype="application/vnd.android.package-archive")
+        response['Content-Disposition'] = 'attachment; filename=%s' % project.apk
+        response['X-Sendfile'] = "./media/%s" % project.apk
+        print response['X-Sendfile']
+
+        # increment download count
+        count = project.download_count + 1
+        project.download_count = count
+        project.save()
+
+        # server file for download.
+        return response
+        #return HttpResponse("/media/%s" % project.apk, mimetype="application/vnd.android.package-archive")
+        
     aakashcenter = AakashCenter.objects.get(pk=id)
-    print aakashcenter.ac_id
-    coordinator_id = aakashcenter.coordinator.id
-    print coordinator_id
-    coordinator = Coordinator.objects.filter(user_id=coordinator_id)
+    # print id
+    # print aakashcenter.ac_id
+    coordinator_name = aakashcenter.coordinator
+    # print coordinator_name.id
+    # print coordinator_name.user_id
+    coordinator = Coordinator.objects.filter(id=coordinator_name.id)
+    coordinator_detail = User.objects.get(id=coordinator_name.user_id)
+    # print coordinator_detail.first_name
+
+    projects = Project.objects.filter(ac=id)
     
-    for c in coordinator:
-        print c.user.username
     context_dict = {'aakashcenter': aakashcenter,
-                    'coordinator': coordinator}
+                    'coordinator': coordinator,
+                    'projects': projects}
     return render_to_response('ac/ac.html', context_dict, context)
 
 
-def test(request):
+def projects(request):
+    """List all projects."""
     context = RequestContext(request)
     projects = Project.objects.all()
     
     context_dict = {'projects': projects}
-    
-
-    return render_to_response('ac/test.html', context_dict, context)
+    return render_to_response('ac/projects.html', context_dict, context)
 
 def project(request, id):
     context = RequestContext(request)
-    print id
-    projects = Project.objects.get(pk=id)
-    context_dict = {'projects': projects}
+
+    # download APK 
+    if request.POST and request.POST['download']:
+        project = get_object_or_404(Project, id=request.POST['download'])
+        response = HttpResponse(mimetype="application/vnd.android.package-archive")
+        response['Content-Disposition'] = 'attachment; filename=%s' % project.apk
+        response['X-Sendfile'] = "./media/%s" % project.apk
+        print response['X-Sendfile']
+
+        # increment download count
+        count = project.download_count + 1
+        project.download_count = count
+        project.save()
+
+        # server file for download.
+        return response
+        #return HttpResponse("/media/%s" % project.apk, mimetype="application/vnd.android.package-archive")
+
+        
+    # print id
+    project = Project.objects.get(pk=id)
+    
+    context_dict = {'project': project}
     return render_to_response('ac/project.html', context_dict, context)

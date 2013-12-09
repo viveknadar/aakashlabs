@@ -11,7 +11,7 @@ urlpatterns = patterns(
     url(r'^suggest_city/$', views.suggest_ac_city, name='suggest_ac_city'),
     url(r'^suggest_state/$', views.suggest_ac_state, name='suggest_ac_state'),
 
-    url(r'^test/$', views.test, name='test'),
+    url(r'^projects/$', views.projects, name='projects'),
     url(r'^project/(?P<id>\d+)/$', views.project, name='project'),
 )
 
