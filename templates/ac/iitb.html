@@ -6,36 +6,12 @@
   <div class="well">
     <div class="row">
       <div class="container" align="center">
-	<h2>{{aakashcenter.name}}</h2>
-	<p class="text-muted">RC_ID: <strong>{{aakashcenter.ac_id}}</strong></p>
-	<p class="text-muted"><strong>{{aakashcenter.city}}, {{aakashcenter.state}}</strong></p>
+	<h2>{{iitb.name}}</h2>
+	<p class="text-muted"><strong>{{iitb.city}}, {{iitb.state}}</strong></p>
       </div>
       {% for c in coordinator %}
-      <div class="col-md-8 well">
-	  <p><strong>Coordinator details:</strong></p>
-	  <table border=0>
-	  <!-- {{c.id}} -->
-	  <tr>
-	  <td>Name:</td>
-	  <td>{{c.user.first_name|capfirst}} {{c.user.last_name|capfirst}}</td>
-	  </tr>
-	  <tr>
-	  <td>Contact:</td>
-	  <td>{{c.contact}}</td>
-	  <tr>
-	  <td>E-mail:</td>
-	  <td>{{c.user.email}}</td>
-	  </table>
-      </div> <!-- col-md-8 -->
-      <div class="col-md-4" align="center">
-	  {% if c.picture %}
-	  <a id="image_link" rel="imagezoom" href="media/{{c.picture}}" >	
-	    <img src="media/{{c.picture}}" height="140" width="240" class="img-thumbnail">
-	  </a>
-	  {% else %}
-	  <img src="{% static 'images/no_image_available.png' %}" height="140" width="240" class="img-thumbnail">
-	  {% endif %}
-      </div>   <!-- col-md-4 -->
+      <div class="col-md-12">
+      </div> <!-- col-md-12 -->
       {% endfor %}
       <div class="container" align="center">
 	  {% if projects %}
